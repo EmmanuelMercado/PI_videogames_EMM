@@ -2,6 +2,9 @@
 const express = require('express')
 const server = express()
 
+//Rutas
+const routerVideogames = require('./routes/index')
+
 //Midlewares
 server.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -17,6 +20,8 @@ server.use((req, res, next) => {
     next();
  });
 server.use(express.json())
+server.use('/videogames',routerVideogames)
+
 
 
 
