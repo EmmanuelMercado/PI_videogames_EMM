@@ -14,6 +14,7 @@ routerVideogames.use(express.json())
 routerVideogames.get('/',async(req,res)=>{
     try{
         let url = 'https://api.rawg.io/api/games?key='+API_KEY
+        console.log(url);
         const {name} = req.query
         
         if(name){
