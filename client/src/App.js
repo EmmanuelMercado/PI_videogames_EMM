@@ -1,10 +1,12 @@
 import './App.css';
 import axios from 'axios'
 import {useEffect,useState} from 'react'
+import {Routes,Route,Link} from 'react-router-dom'
+
 
 //Componentes
-import CardVideogame from './Components/CardVideogame/CardVideogame'
 import CardsVideogame from './Components/CardsVideogames/CardsVideogames'
+import DetailVideogame from './Components/Detail/DetailVideogame';
 
 
 function App() {
@@ -29,8 +31,15 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
-      {videogamesIsEmpty ? (<p></p>) : (<CardsVideogame videogames={videogames.results} />)}
+      {/* Auxiliar de home */}
+      <Link to="/">
+        <h1>Henry Videogames</h1>
+      </Link>
+      
+      <Routes>
+        <Route path="/" element={videogamesIsEmpty ? (<p></p>) : (<CardsVideogame videogames={videogames.results} />)}/> 
+        <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
+      </Routes>
     </div>
   );
 }

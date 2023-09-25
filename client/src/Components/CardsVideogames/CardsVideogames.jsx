@@ -6,7 +6,8 @@ const CardsVideogames = (props)=>{
         {
             props.videogames.map((videogame)=>{
                 return(
-                    <CardVideogame videogame = {videogame}></CardVideogame>
+                    <CardVideogame videogame = {videogame} key={videogame.id}></CardVideogame>
+                    
                 )
             })
         }

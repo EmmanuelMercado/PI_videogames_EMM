@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const CardVideogame = (props)=>{
     //ID auxiliar
-    console.log(props.videogame);
-    const {name,background_image,genres} = props.videogame
+    
+    const {id,name,background_image,genres} = props.videogame
     
     const generateGenres = (genres) =>{
         const genresNames = genres.map(genre => genre.name)
@@ -13,7 +15,9 @@ const CardVideogame = (props)=>{
     return(
         <div>
            <div>
-            <img src={background_image} alt={name}/>
+            <Link to={'/detail/'+id}>
+                <img src={background_image} alt={name}/>
+            </Link>
            </div>
            <h4>name: {name}</h4>
            <h4>genres:{genresToShow}</h4>
