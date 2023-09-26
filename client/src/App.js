@@ -30,6 +30,8 @@ useEffect(()=>{
 },[])
 
 
+
+
 const searchVideogameByName = async (nameVideogame)=>{
   await axios('http://localhost:3001/videogames?name='+nameVideogame)
     .then(response=>{

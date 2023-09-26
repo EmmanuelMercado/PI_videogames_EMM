@@ -1,7 +1,13 @@
 //Importar las dependencias
 const server = require('./src/app')
+const {database} = require('./src/db')
 
-
-server.listen(3001,()=>{
-    console.log('Servidor arriba en el puerto 3001');
+database.sync({force:true})
+.then(()=>{
+    server.listen(3001,()=>{
+        console.log('Servidor arriba en el puerto 3001');
+    })
 })
+.catch((err)=>console.log(err))
+
+

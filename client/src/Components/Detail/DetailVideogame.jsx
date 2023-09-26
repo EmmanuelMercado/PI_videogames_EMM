@@ -23,12 +23,13 @@ const DetailVideogame = ()=>{
         const totalPlatform = platformsNames.join(', ')
         return totalPlatform
     }
-    function generateDescription(description){
-        const sections =  description.split('<p>')
-        let finalDescription = sections[1]
-        finalDescription = finalDescription.replace(/<p>|<\/p>|<br\s*\/?>/gi, '');
-        return finalDescription;
-    }
+    // function generateDescription(description){
+    //     console.log(videogame.description_raw);
+    //     const sections =  description.split('<p>')
+    //     let finalDescription = sections[1]
+    //     // finalDescription = finalDescription.replace(/<p>|<\/p>|<br\s*\/?>/gi, '');
+    //     return finalDescription;
+    // }
     
 
     useEffect(()=>{
@@ -49,7 +50,7 @@ const DetailVideogame = ()=>{
     if(!videogameIsEmpty){
         genresToShow= generateGenres(videogame.genres)
         platformsToShow= generatePlatforms(videogame.platforms)
-        descriptionToShow= generateDescription(videogame.description)
+        // descriptionToShow= generateDescription(videogame.description)
     }
     
 
@@ -63,7 +64,7 @@ const DetailVideogame = ()=>{
             {!videogameIsEmpty?<h3>ID: {videogame.id}</h3>:<p></p>}
             {!videogameIsEmpty?<h3>Géneros: {genresToShow} </h3>:<p></p>}
             {!videogameIsEmpty?<h3>Platforms: {platformsToShow}</h3>:<p></p>}
-            {!videogameIsEmpty?<h3>Description: {descriptionToShow}</h3>:<p></p>}
+            {!videogameIsEmpty?<h3>Description: {videogame.description_raw}</h3>:<p></p>}
             {!videogameIsEmpty?<h3>Released: {videogame.released}</h3>:<p></p>}
             {!videogameIsEmpty?<h3>Rating: {videogame.rating}</h3>:<p></p>}
         </div>
