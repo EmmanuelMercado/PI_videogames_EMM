@@ -7,7 +7,7 @@ import {Routes,Route,Link} from 'react-router-dom'
 //Componentes
 import CardsVideogame from './Components/CardsVideogames/CardsVideogames'
 import DetailVideogame from './Components/Detail/DetailVideogame';
-
+import SearchBar from './Components/SearchBar/SearchBar';
 
 function App() {
 const [videogames,setVideogames] = useState({})
@@ -30,13 +30,27 @@ useEffect(()=>{
 },[])
 
 
+const searchVideogameByName = async (nameVideogame)=>{
+  await axios('http://localhost:3001/videogames?name='+nameVideogame)
+    .then(response=>{
+      let results = {
+        results : response.data
+      }
+      setVideogames(results)
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+}
+
+
   return (
     <div className="App">
       {/* Auxiliar de home */}
       <Link to="/">
         <h1>Henry Videogames</h1>
       </Link>
-      
+      <SearchBar searchVideogameByName={searchVideogameByName}></SearchBar>
       <Routes>
         <Route path="/" element={videogamesIsEmpty ? (<p></p>) : (<CardsVideogame videogames={videogames.results} />)}/> 
         <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
