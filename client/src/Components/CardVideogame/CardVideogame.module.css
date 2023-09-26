@@ -1,0 +1,31 @@
+.card{
+    width: 400px;
+    height: 500px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    overflow: hidden;
+}
+
+.cardImage{
+    width: 400px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+.cardImage img{
+    width: 100% ;  /* Ancho del 100% para ajustar la imagen al contenedor */
+    height: 100%; /* Altura del 100% para ajustar la imagen al contenedor */
+    object-fit: fill; /* Escala la imagen para que quepa completamente sin recortarla */
+}
+
+.cardTitle{
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.cardDescription{
+    margin-top: 10px;
+     font-size: 1rem;
+}

@@ -30,17 +30,26 @@ routerVideogames.get('/',async(req,res)=>{
             })
         }
         else{
-            await axios.get(url)
-            .then(response=>{
-                res.json(response.data)
-            })
-            .catch(error =>{
-                res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
-            })
-        }
-
-        
-
+            let combinedResult = {
+                results:[]
+            }
+            const resultados= async()=>{
+                for(i=0;i<5;i++){
+                    await axios.get(`${url}&page=${i+1}`)
+                    .then(response=>{
+                        combinedResult={
+                            results:[...combinedResult.results,...response.data.results]
+                        }
+                    })
+                    .catch(error =>{
+                    res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
+                    })
+                }
+                res.status(200).json(combinedResult)
+            }
+            resultados()
+                
+            }
     }
     catch(error){
     }

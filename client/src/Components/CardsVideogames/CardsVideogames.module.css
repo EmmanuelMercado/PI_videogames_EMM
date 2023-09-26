@@ -1,0 +1,8 @@
+.cardContainer{
+    /* Esto establece que el contenedor se comporte como un contenedor flexible, */
+    display: flex; 
+    /* Esto permite que las tarjetas se envuelvan a la siguiente línea cuando no haya suficiente espacio horizontal para mostrarlas todas en una sola fila. */
+    flex-wrap: wrap;
+    /* Esto distribuye el espacio horizontal disponible de manera uniforme entre las tarjetas, lo que significa que habrá un espacio igual entre cada par de tarjetas. */
+    justify-content: space-between;
+}

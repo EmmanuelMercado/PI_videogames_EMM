@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styles from './CardVideogame.module.css'
 
 const CardVideogame = (props)=>{
     //ID auxiliar
@@ -13,14 +14,21 @@ const CardVideogame = (props)=>{
     const genresToShow = generateGenres(genres)
 
     return(
-        <div>
-           <div>
+        <div className={styles.card}>
+           <div className={styles.cardImage}>
             <Link to={'/detail/'+id}>
-                <img src={background_image} alt={name}/>
+                
+                    <img src={background_image} alt={name}/>
+    
             </Link>
            </div>
-           <h4>name: {name}</h4>
-           <h4>genres:{genresToShow}</h4>
+           <div className={styles.cardTitle}>
+            <h4>{name}</h4>
+           </div>
+           <div className={styles.cardDescription}>
+            <h4>{genresToShow}</h4>
+           </div>
+           
         </div>
     )
 }

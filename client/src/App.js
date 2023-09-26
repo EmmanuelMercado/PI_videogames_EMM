@@ -19,6 +19,7 @@ useEffect(()=>{
     await axios('http://localhost:3001/videogames')
     .then(response=>{
       setVideogames(response.data)
+      console.log(response.data.results);
     })
     .catch(error =>{
       console.log(error);
