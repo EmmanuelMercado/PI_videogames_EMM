@@ -36,6 +36,7 @@ const DetailVideogame = ()=>{
         const requestApi = async ()=>{
           await axios('http://localhost:3001/videogames/'+id)
           .then(response=>{
+            console.log(response.data);
             setVideogame(response.data)            
           })
           .catch(error =>{
