@@ -1,35 +1,68 @@
-.card{
+/* CardVideogame.module.css */
+
+.cardContainer {
     width: 400px;
-    height: 500px;
+    height: 400px;
     margin-bottom: 20px;
     padding: 20px;
     border: 1px solid black;
     text-align: center;
     overflow: hidden;
     border-radius: 8%;
-}
-
-.cardImage{
+  }
+  
+  .cardImageContainer {
     width: 400px;
     height: 300px;
     position: relative;
     overflow: hidden;
-}
-
-
-.cardImage img{
-    width: 100% ;  /* Ancho del 100% para ajustar la imagen al contenedor */
-    height: 100%; /* Altura del 100% para ajustar la imagen al contenedor */
-    object-fit: fill; /* Escala la imagen para que quepa completamente sin recortarla */
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Llena el contenedor sin recortar la imagen */
     border-radius: 7%;
-}
-
-.cardTitle{
-    margin-top: 10px;
+    transition: opacity 0.3s ease; /* Transición para el efecto de oscurecimiento */
+  }
+  
+  .cardImage:hover {
+    opacity: 0.2; /* Cambia la opacidad al pasar el cursor */
+  }
+  
+  .cardTitle{
+    position:static;
+    margin: 0;
     font-size: 1.2rem;
-}
+    color: rgb(0, 0, 0); /* Color del texto en el nombre y los géneros */
+  }
+  .cardGenres {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 1.2rem;
+    color: rgb(0, 0, 0); /* Color del texto en el nombre y los géneros */
+    display: none; /* Ocultar el nombre y los géneros inicialmente */
+  }
+  .cardPlatforms {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 1.2rem;
+    color: rgb(0, 0, 0); /* Color del texto en el nombre y los géneros */
+    display: none; /* Ocultar el nombre y los géneros inicialmente */
+  }
+  
+  .cardImageContainer:hover .cardGenres {
+    display: block; /* Mostrar el nombre y los géneros cuando se oscurezca la imagen */
+  }
+  .cardImageContainer:hover .cardPlatforms {
+    display: block; /* Mostrar el nombre y los géneros cuando se oscurezca la imagen */
+  }
 
-.cardDescription{
-    margin-top: 10px;
-     font-size: 1rem;
-}
+  
+  

@@ -1,47 +1,42 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from './CardVideogame.module.css'
-import { useState } from "react";
+import StarRating from '../Stars/Star'
 
-const CardVideogame = (props)=>{
-    //ID auxiliar
-    const {id,name,background_image,genres,Genres} = props.videogame
-    
-    let genresToShow = ''
-    const generateGenres = (genres) =>{
-        const genresNames = genres.map(genre => genre.name)
-        const totalGenres = genresNames.join(', ')
-        return totalGenres
-    }
-    if(genres){
-        genresToShow = generateGenres(genres)
-    }
-    else{
-        genresToShow = generateGenres(Genres)
-    }
-    
-    //Funciones de diseño de página
-    
-    
+const CardVideogame = (props) => {
+  const { id, name, background_image, genres, Genres,rating} = props.videogame;
+  let genresToShow = '';
+  
+  const generateGenres = (genres) => {
+    const genresNames = genres.map((genre) => genre.name);
+    const totalGenres = genresNames.join(', ');
+    return totalGenres;
+  };
+
+
+  if (genres) {
+    genresToShow = generateGenres(genres);
+  } else {
+    genresToShow = generateGenres(Genres);
+  }
     
 
-    return(
-        <div className={styles.card}>
-           <div className={styles.cardImage}>
-            <Link to={'/detail/'+id}>
-                
-                    <img src={background_image} alt={name}/>
-    
-            </Link>
-           </div>
-           <div className={styles.cardTitle}>
-            <h4>{name}</h4>
-           </div>
-           <div className={styles.cardDescription}>
-            <h4>{genresToShow}</h4>
-           </div>
-           
-        </div>
-    )
-}
+  return (
+    <div className={styles.cardContainer}>
+    <h4 className={styles.cardTitle}>{name}</h4>
+    <StarRating rating={rating} /> {/* Mostrar el rating con estrellas */}
+    <div className={styles.cardImageContainer}>
+        <Link to={'/detail/' + id}>
+          <img src={background_image} alt={name} className={styles.cardImage} />
+          <p className={styles.cardPlatforms}>Rating: {rating}</p>
+          <p className={styles.cardGenres}>{genresToShow}</p>
+        </Link>
+        
+        
+      </div>
+    </div>
+  );
+};
 
 export default CardVideogame;
+
