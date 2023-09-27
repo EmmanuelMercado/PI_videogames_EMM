@@ -8,7 +8,7 @@ const NavBar = (props)=>{
     return(
         <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
-        <Link to="/">
+        <Link to="/home">
           <img src="logo.png" alt="Logo de la empresa" onClick={requestApi} />
         </Link>
         </div>
