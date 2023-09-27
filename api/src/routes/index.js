@@ -12,6 +12,8 @@ const { response } = require('../app')
 const addGenresToDB = require('../controllers/addGenresToDB')
 const createVideogame = require('../controllers/createVideogame')
 const findAllVideogames = require('../controllers/findAllVideogames')
+const findVideogameById = require('../controllers/findVideogameById')
+const findByName = require('../controllers/findByName')
 
 
 //Midlewares
@@ -26,10 +28,26 @@ routerVideogames.get('/',async(req,res)=>{
         if(name){
             //https://api.rawg.io/api/games?search=Grand&key=f6eb52bcbcf14eb3b2670e43ac00abd8
             url = 'https://api.rawg.io/api/games?search='+name+'&key='+API_KEY
+            const videogameInDB = await findByName(name);
+            let DBResult = {
+                origin:"DB",
+                results:videogameInDB
+            }
+            let ResultApi = {
+                origin:"API",
+                results:[]
+            }
+            let finalResult=[]
             await axios.get(url)
             .then(response=>{
-                const gamesLimited = response.data.results.slice(0,15)
-                res.status(200).json(gamesLimited)
+                const gamesAPILimited = response.data.results.slice(0,(15-DBResult.results.length))
+                ResultApi={
+                    origin:"API",
+                    results:gamesAPILimited
+                }
+                finalResult.push(DBResult)
+                finalResult.push(ResultApi)
+                res.status(200).json(finalResult)
             })
             .catch(error =>{
                 res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
@@ -82,17 +100,24 @@ routerVideogames.get('/:idVideogame',async(req,res)=>{
     try{
         const {idVideogame} = req.params
         const url = 'https://api.rawg.io/api/games/'+idVideogame+'?key='+API_KEY
-
-        await axios.get(url)
-        .then(response=>{
-            res.json(response.data)
-        })
-        .catch(error =>{
-            res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
-        })
-
+        const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+        let videogameInDB = ''
+        if(uuidRegex.test(idVideogame)){
+            videogameInDB = await findVideogameById(idVideogame)
+            res.json(videogameInDB)
+        }
+        else{
+            await axios.get(url)
+            .then(response=>{
+                res.json(response.data)
+            })
+            .catch(error =>{
+                res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
+            })
+        }
     }
     catch(error){
+        res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
     }
 })
 

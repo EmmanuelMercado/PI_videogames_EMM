@@ -41,7 +41,7 @@ const CardsVideogames = (props) => {
     
     <div>
 
-    <div className="pagination">
+    {/* <div className="pagination">
         {Array.from(
           { length: Math.ceil(props.videogames.length / cardsPerPage) },
           (_, index) => (
@@ -50,7 +50,8 @@ const CardsVideogames = (props) => {
             </button>
           )
         )}
-      </div>
+      </div> */}
+      
       <div className={styles.cardContainer}>
         {currentVideogames.map((videogame) => (
           <CardVideogame videogame={videogame} key={videogame.id} />

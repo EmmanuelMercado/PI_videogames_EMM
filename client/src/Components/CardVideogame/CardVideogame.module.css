@@ -6,6 +6,7 @@
     border: 1px solid black;
     text-align: center;
     overflow: hidden;
+    border-radius: 8%;
 }
 
 .cardImage{
@@ -14,10 +15,13 @@
     position: relative;
     overflow: hidden;
 }
+
+
 .cardImage img{
     width: 100% ;  /* Ancho del 100% para ajustar la imagen al contenedor */
     height: 100%; /* Altura del 100% para ajustar la imagen al contenedor */
     object-fit: fill; /* Escala la imagen para que quepa completamente sin recortarla */
+    border-radius: 7%;
 }
 
 .cardTitle{

@@ -2,7 +2,7 @@
 const server = require('./src/app')
 const {database} = require('./src/db')
 
-database.sync({force:true})
+database.sync({alter:true})
 .then(()=>{
     server.listen(3001,()=>{
         console.log('Servidor arriba en el puerto 3001');

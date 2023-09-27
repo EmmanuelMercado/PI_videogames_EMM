@@ -7,7 +7,9 @@ import {Routes,Route,Link} from 'react-router-dom'
 //Componentes
 import CardsVideogame from './Components/CardsVideogames/CardsVideogames'
 import DetailVideogame from './Components/Detail/DetailVideogame';
+import Form from './Components/Form/Form';
 import SearchBar from './Components/SearchBar/SearchBar';
+
 
 function App() {
 const [videogames,setVideogames] = useState({})
@@ -18,8 +20,10 @@ useEffect(()=>{
   const requestApi = async()=>{
     await axios('http://localhost:3001/videogames')
     .then(response=>{
-      setVideogames(response.data)
-      console.log(response.data.results);
+      console.log(response.data);
+      const cardsToShow = [...response.data[0].results,...response.data[1].results]
+      setVideogames(cardsToShow)
+      console.log(cardsToShow);
     })
     .catch(error =>{
       console.log(error);
@@ -35,10 +39,8 @@ useEffect(()=>{
 const searchVideogameByName = async (nameVideogame)=>{
   await axios('http://localhost:3001/videogames?name='+nameVideogame)
     .then(response=>{
-      let results = {
-        results : response.data
-      }
-      setVideogames(results)
+      const cardsToShow = [...response.data[0].results,...response.data[1].results]
+      setVideogames(cardsToShow)           
     })
     .catch(error =>{
       console.log(error);
@@ -52,10 +54,14 @@ const searchVideogameByName = async (nameVideogame)=>{
       <Link to="/">
         <h1>Henry Videogames</h1>
       </Link>
+      <Link to="/Form">
+        <h1>New videogame</h1>
+      </Link>
       <SearchBar searchVideogameByName={searchVideogameByName}></SearchBar>
       <Routes>
-        <Route path="/" element={videogamesIsEmpty ? (<p></p>) : (<CardsVideogame videogames={videogames.results} />)}/> 
+        <Route path="/" element={videogamesIsEmpty ? (<p></p>) : (<CardsVideogame videogames={videogames}/>)}/> 
         <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
+        <Route path='/Form' element={<Form/>}> </Route> 
       </Routes>
     </div>
   );

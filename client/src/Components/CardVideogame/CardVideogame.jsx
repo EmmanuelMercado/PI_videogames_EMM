@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
 import styles from './CardVideogame.module.css'
+import { useState } from "react";
 
 const CardVideogame = (props)=>{
     //ID auxiliar
+    const {id,name,background_image,genres,Genres} = props.videogame
     
-    const {id,name,background_image,genres} = props.videogame
-    
+    let genresToShow = ''
     const generateGenres = (genres) =>{
         const genresNames = genres.map(genre => genre.name)
         const totalGenres = genresNames.join(', ')
         return totalGenres
     }
-    const genresToShow = generateGenres(genres)
+    if(genres){
+        genresToShow = generateGenres(genres)
+    }
+    else{
+        genresToShow = generateGenres(Genres)
+    }
+    
+    //Funciones de diseño de página
+    
+    
+    
 
     return(
         <div className={styles.card}>

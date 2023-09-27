@@ -12,7 +12,8 @@ const DetailVideogame = ()=>{
     //Funciones para manejar los datos
     let genresToShow = ''
     let platformsToShow = ''
-    let descriptionToShow = ''
+
+
     function generateGenres(genres){
         const genresNames = genres.map(genre => genre.name)
         const totalGenres = genresNames.join(', ')
@@ -49,7 +50,12 @@ const DetailVideogame = ()=>{
     },[])
 
     if(!videogameIsEmpty){
-        genresToShow= generateGenres(videogame.genres)
+        if(videogame.genres){
+            genresToShow = generateGenres(videogame.genres)
+        }
+        else{
+            genresToShow = generateGenres(videogame.Genres)
+        }
         platformsToShow= generatePlatforms(videogame.platforms)
         // descriptionToShow= generateDescription(videogame.description)
     }
