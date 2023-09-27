@@ -1,0 +1,12 @@
+.searchBar input{
+    background-color: rgb(125, 2, 2);
+    color: aliceblue;
+    width: 200px;
+    height: 30px;
+}
+
+.searchBar button{
+    background-color: rgb(76, 4, 4);
+    color: aliceblue;
+    border-radius: 10%;
+}

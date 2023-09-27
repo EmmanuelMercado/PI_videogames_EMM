@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import styles from './Form.module.css'
 
 const Form = ()=>{
     //Estados locales
@@ -146,43 +147,63 @@ const Form = ()=>{
 
 
 return(
-    <form onSubmit={handleOnSubmit}>
-        <h1>Holis, soy el Form</h1>
+    <div className={styles.container}>
+    <form onSubmit={handleOnSubmit}> 
+        <div>
         {/* Nombre */}
         <label htmlFor="name">Name </label>
         <input type="text" name='name' placeholder="Videogame name" value={form.name} onChange={handleOnChange}/>
-
+        </div>
+        <div>
         {/* Descripción */}
         <label htmlFor="description_raw">Description </label>
         <textarea name='description_raw' placeholder='Insert the description' value={form.description_raw} onChange={handleOnChange}/>
+        </div>
 
+       <div className={styles.checklistContainer} >
         {/* Platforms */}
-        <label htmlFor="plataforms">Platforms </label>
-        <ul>
+       <label htmlFor="plataforms">Platforms </label>
+        <ul className={styles.checklistPlatforms}>
             {listPlatforms }
         </ul>
-
+       </div>
+        
+        <div>
         {/* Image */}
         <label htmlFor="background_image">Image URL </label>
         <input type="text" name='background_image' placeholder="Image URL" value={form.background_image} onChange={handleOnChange}/>
-
+        <img src={form.background_image} alt={form.background_image} />
+        </div>
+       
+        <div>
         {/* Released */}
         <label htmlFor="released">Date released:</label>
         <input type="date" name="released" onChange={handleDateChange}></input>
+        </div>
 
+        <div>
         {/* Rating */}
-        <label for="rating">Ingresa un número:</label>
-        <input type="number" name="rating" min="0" max="5" step="0.1" value={form.rating} onChange={handleOnChange}></input>
-
+        <label for="rating">Rating 0-5</label>
+        <input type="number" name="rating" min="0" max="5" step="0.1" value={form.rating} onChange={handleOnChange}></input>  
+        </div>
+        
+        <div>
         {/* Genres */}
         <label htmlFor="genres">Genres</label>
-        <ul>
+        <ul className={styles.checklistGenres}>
             {listGenres }
         </ul>
+        </div>
+
+        
+
+        
 
         <button>Registrar videojuego</button>
 
     </form>
+    </div>
+    
 )
 }
 

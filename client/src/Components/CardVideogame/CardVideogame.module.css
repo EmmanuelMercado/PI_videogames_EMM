@@ -5,10 +5,11 @@
     height: 400px;
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid rgb(77, 0, 0);
     text-align: center;
     overflow: hidden;
     border-radius: 8%;
+    background-color: rgb(16, 16, 16);;
   }
   
   .cardImageContainer {
@@ -34,7 +35,7 @@
     position:static;
     margin: 0;
     font-size: 1.2rem;
-    color: rgb(0, 0, 0); /* Color del texto en el nombre y los géneros */
+    color: rgb(252, 252, 252); /* Color del texto en el nombre y los géneros */
   }
   .cardGenres {
     position: absolute;
@@ -43,7 +44,7 @@
     transform: translate(-50%, -50%);
     margin: 0;
     font-size: 1.2rem;
-    color: rgb(0, 0, 0); /* Color del texto en el nombre y los géneros */
+    color: rgb(255, 0, 0); /* Color del texto en el nombre y los géneros */
     display: none; /* Ocultar el nombre y los géneros inicialmente */
   }
   .cardPlatforms {
@@ -53,7 +54,7 @@
     transform: translate(-50%, -50%);
     margin: 0;
     font-size: 1.2rem;
-    color: rgb(0, 0, 0); /* Color del texto en el nombre y los géneros */
+    color: rgb(255, 255, 255); /* Color del texto en el nombre y los géneros */
     display: none; /* Ocultar el nombre y los géneros inicialmente */
   }
   

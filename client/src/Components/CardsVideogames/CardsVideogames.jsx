@@ -1,25 +1,7 @@
-// import CardVideogame from "../CardVideogame/CardVideogame";
-// import styles from "./CardsVideogames.module.css"
-
-// const CardsVideogames = (props)=>{
-//    return(
-//     <div className={styles.cardContainer}>
-//         {
-//             props.videogames.map((videogame)=>{
-//                 return(
-//                     <CardVideogame videogame = {videogame} key={videogame.id}></CardVideogame>
-//                 )
-//             })
-//         }
-//     </div>
-//    )
-// }
-
-// export default CardsVideogames;
-
 
 import React, { useState } from "react";
 import CardVideogame from "../CardVideogame/CardVideogame";
+import SearchBar from "../SearchBar/SearchBar";
 import styles from "./CardsVideogames.module.css";
 
 const CardsVideogames = (props) => {
@@ -37,20 +19,13 @@ const CardsVideogames = (props) => {
   // Función para cambiar la página actual
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  return (
-    
-    <div>
+  // Validar si hay páginas anteriores o siguientes
+  const hasPreviousPage = currentPage > 1;
+  const hasNextPage = indexOfLastCard < props.videogames.length;
 
-    {/* <div className="pagination">
-        {Array.from(
-          { length: Math.ceil(props.videogames.length / cardsPerPage) },
-          (_, index) => (
-            <button key={index} onClick={() => paginate(index + 1)}>
-              {index + 1}
-            </button>
-          )
-        )}
-      </div> */}
+  return (
+    <div>
+      <SearchBar searchVideogameByName={props.searchVideogameByName} />
       
       <div className={styles.cardContainer}>
         {currentVideogames.map((videogame) => (
@@ -59,13 +34,25 @@ const CardsVideogames = (props) => {
       </div>
 
       <div className="pagination">
+        {hasPreviousPage && (
+          <button onClick={() => paginate(currentPage - 1)}>Back</button>
+        )}
+
         {Array.from(
           { length: Math.ceil(props.videogames.length / cardsPerPage) },
           (_, index) => (
-            <button key={index} onClick={() => paginate(index + 1)}>
+            <button
+              key={index}
+              onClick={() => paginate(index + 1)}
+              className={currentPage === index + 1 ? styles.activePage : ""}
+            >
               {index + 1}
             </button>
           )
+        )}
+
+        {hasNextPage && (
+          <button onClick={() => paginate(currentPage + 1)}>Next</button>
         )}
       </div>
     </div>

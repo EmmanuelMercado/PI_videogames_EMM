@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useParams,Link } from 'react-router-dom';
 import { useState,useEffect } from 'react';
+import styles from './DetailVideogame.module.css'
 
 const DetailVideogame = ()=>{
     let [videogame,setVideogame] = useState({})
@@ -64,16 +65,22 @@ const DetailVideogame = ()=>{
     return(
         <div>
             <Link to= '/'>
-            <div> Home</div>
+            <div className={styles.home}>
+                <h1>Home</h1>
+            </div>
             </Link>
+            <div className={styles.cardDetail}>
             {!videogameIsEmpty?<h1>Nombre: {videogame.name}</h1>:<p></p>}
             {!videogameIsEmpty?<img src={videogame.background_image} alt={videogame.name} />:<p></p>}
             {!videogameIsEmpty?<h3>ID: {videogame.id}</h3>:<p></p>}
-            {!videogameIsEmpty?<h3>Géneros: {genresToShow} </h3>:<p></p>}
+            {!videogameIsEmpty?<h3>Genres: {genresToShow} </h3>:<p></p>}
             {!videogameIsEmpty?<h3>Platforms: {platformsToShow}</h3>:<p></p>}
             {!videogameIsEmpty?<h3>Description: {videogame.description_raw}</h3>:<p></p>}
             {!videogameIsEmpty?<h3>Released: {videogame.released}</h3>:<p></p>}
             {!videogameIsEmpty?<h3>Rating: {videogame.rating}</h3>:<p></p>}
+           
+            </div>
+            
         </div>
     )
 }

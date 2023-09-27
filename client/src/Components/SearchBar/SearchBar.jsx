@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import styles from './SearchBar.module.css'
 
 const SearchBar = (props) =>{
     let [nameVideogame,setNameVideogame] = useState('')
@@ -13,7 +13,7 @@ const SearchBar = (props) =>{
     }
 
     return(
-        <div>
+        <div className={styles.searchBar}>
             <input onChange={handleChange} type="search" value={nameVideogame}/>
             <button onClick={searchVideogameByName}>Buscar</button>
             

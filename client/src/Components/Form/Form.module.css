@@ -1,0 +1,75 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(77, 0, 0);
+    text-align: center;
+    overflow: hidden;
+    border-radius: 8%;
+    background-color: rgb(16, 16, 16);
+    justify-content: center;
+    position: relative;
+    
+}
+
+.container label{
+    color: aliceblue;
+}
+
+.container input{
+    color: aliceblue;
+    background-color: rgb(202, 11, 11);
+    margin-top: 10px;
+}
+.container textarea{
+    color: aliceblue;
+    background-color: rgb(202, 11, 11);
+}
+
+
+.checklistPlatforms {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Define 3 columnas con igual ancho */
+    gap: 14px; /* Espacio entre elementos */
+    position: relative;
+    transform: translate(0%, -10%);
+}
+
+  /* Estilos para los elementos de la lista */
+  .checklisttPlatforms li {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el texto y el checkbox */
+  }
+  
+  /* Estilos para el checkbox */
+  .checklisttPlatforms input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre el checkbox y el texto */
+  }
+
+.checklistGenres {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Define 3 columnas con igual ancho */
+    gap: 14px; /* Espacio entre elementos */
+    position: relative;
+    transform: translate(5%, 0%);
+}
+
+  /* Estilos para los elementos de la lista */
+  .checklistGenres li {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el texto y el checkbox */
+  }
+  
+  /* Estilos para el checkbox */
+  .checklistGenres input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre el checkbox y el texto */
+  }
+
+  .container img{
+    height: 200px;
+    width: 300px;
+    position:static;
+}
