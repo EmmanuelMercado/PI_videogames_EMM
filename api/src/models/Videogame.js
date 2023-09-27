@@ -20,7 +20,7 @@ module.exports=(database)=>{
             type:DataTypes.JSON,
             allowNull:false
         },
-        image:{
+        background_image:{
             type:DataTypes.TEXT,
             allowNull:false
         },

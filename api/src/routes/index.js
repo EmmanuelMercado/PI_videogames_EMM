@@ -139,9 +139,10 @@ routerVideogames.get('/genres/all',async(req,res)=>{
 })
 
 routerVideogames.post('/',async(req,res)=>{
+    console.log(req.body);
     try{
-        const {name,description_raw,platforms,image,released,rating,genres} = req.body
-        const newVideogame = await createVideogame({name,description_raw,platforms,image,released,rating,genres})
+        const {name,description_raw,platforms,background_image,released,rating,genres} = req.body
+        const newVideogame = await createVideogame({name,description_raw,platforms,background_image,released,rating,genres})
         res.status(200).json(newVideogame)
     }
     catch(error){
