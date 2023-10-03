@@ -69,12 +69,14 @@ const handleLogin = (condition) =>{
   return (
     <div className="App">
       {/* Auxiliar de home */}
-      {login?<NavBar requestApi={requestApi}></NavBar>:<>Z</>}
+      {/* {login?<NavBar requestApi={requestApi}></NavBar>:<>Z</>} */}
+      <NavBar requestApi={requestApi}></NavBar>
       <Routes>
-        <Route path="/" element={<LandingPage handleLogin={handleLogin}></LandingPage>}/> 
-        <Route path="/home" element={videogamesIsEmpty ? (<Loading></Loading>) : (<CardsVideogame searchVideogameByName={searchVideogameByName} videogames={videogames}/>)}/> 
-        <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
-        <Route path='/Form' element={<Form requestApi={requestApi}/>}> </Route> 
+        {/* <Route path="/" element={<LandingPage handleLogin={handleLogin}></LandingPage>}/>  */}
+        {/* <Route path="/" element={videogamesIsEmpty ? (<Loading></Loading>) : (<CardsVideogame searchVideogameByName={searchVideogameByName} videogames={videogames}/>)}/>  */}
+        <Route path="/" element={<CardsVideogame searchVideogameByName={searchVideogameByName} videogames={videogames}/>}/>
+        {/* <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
+        <Route path='/Form' element={<Form requestApi={requestApi}/>}> </Route>  */}
       </Routes>
     </div>
   );

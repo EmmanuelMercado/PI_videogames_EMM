@@ -56,35 +56,30 @@ routerVideogames.get('/',async(req,res)=>{
         else{
             //Primero obtener los resultado de la base de datos
             const videogamesDB = await findAllVideogames()
+            for (let i = 0; i < videogamesDB.length; i++) {
+                videogamesDB[i].dataValues.origin = 'DB';
+                videogamesDB[i].dataValues.genres = videogamesDB[i].dataValues.Genres;
+            }            
             
-            let DBResult = {
-                    origin:"DB",
-                    results:videogamesDB
-                }
-            
-            let combinedResultApi = {
-                origin:"API",
-                results:[]
-            }
-
+            let combinedResultApi = []
             let finalResult=[]
 
             const resultados= async()=>{
                 for(let i=0;i<5;i++){
                     await axios.get(`${url}&page=${i+1}`)
                     .then(response=>{
-                        combinedResultApi={
-                            origin:"API",
-                            results:[...combinedResultApi.results,...response.data.results]
-                        }
-                    
+                        combinedResultApi=[...combinedResultApi,...response.data.results]
                     })
                     .catch(error =>{
                     res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
                     })
                 }
-                finalResult.push(DBResult)
-                finalResult.push(combinedResultApi)
+                for (let i = 0; i < combinedResultApi.length; i++) {
+                    combinedResultApi[i].origin = 'API';
+                }   
+
+                // finalResult.push(DBResult)
+                finalResult = [...videogamesDB,...combinedResultApi]
 
                 res.status(200).json(finalResult)
             }
@@ -149,6 +144,9 @@ routerVideogames.post('/',async(req,res)=>{
         res.status(500).json(error);
     }
 })
+
+
+
 
 
 

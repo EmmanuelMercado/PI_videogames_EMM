@@ -32,6 +32,7 @@ const DetailVideogame = ()=>{
     //     // finalDescription = finalDescription.replace(/<p>|<\/p>|<br\s*\/?>/gi, '');
     //     return finalDescription;
     // }
+
     
 
     useEffect(()=>{
@@ -60,8 +61,6 @@ const DetailVideogame = ()=>{
         platformsToShow= generatePlatforms(videogame.platforms)
         // descriptionToShow= generateDescription(videogame.description)
     }
-    
-
     return(
         <div>
             <Link to= '/'>

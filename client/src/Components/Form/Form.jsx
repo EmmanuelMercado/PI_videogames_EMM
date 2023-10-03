@@ -129,6 +129,7 @@ const Form = ()=>{
           
                 if (response.status === 200) {
                   // La solicitud fue exitosa
+                  window.alert('Videogame on DB')
                   console.log("Solicitud exitosa");
                 } else {
                   // La solicitud falló
@@ -139,7 +140,7 @@ const Form = ()=>{
               }
         }
         else{
-            window.alert('Falta algún dato o existe alguno incorrecto, favor de verificar')
+            window.alert('Error on data')
         }
        
     }
