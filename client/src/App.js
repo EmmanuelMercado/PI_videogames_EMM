@@ -2,6 +2,9 @@ import './App.css';
 import axios from 'axios'
 import {useEffect,useState} from 'react'
 import {Routes,Route,Link} from 'react-router-dom'
+import {useDispatch,useSelector} from "react-redux"
+
+import { getAllVideogames,getAllGenres,mountedAppPage } from './redux/actions';
 
 
 //Componentes
@@ -15,69 +18,43 @@ import LandingPage from './Components/LandingPage/LandingPage';
 
 
 function App() {
-const [videogames,setVideogames] = useState({})
-const [login,setLogin] = useState(false)
-const videogamesIsEmpty = Object.keys(videogames).length === 0;
+// const [videogames,setVideogames] = useState({})
+// const [login,setLogin] = useState(false)
+const videogames = useSelector((state)=>state.videogames)
+const mountedApp = useSelector((state)=>state.mountedApp)
+let videogamesIsEmpty = Object.keys(videogames).length === 0;
+console.log(mountedApp);
+const dispatch = useDispatch()
 
-const requestApi = async()=>{
-  setVideogames({})
-  await axios('http://localhost:3001/videogames')
-  .then(response=>{
-    console.log(response.data);
-    const cardsToShow = [...response.data[0].results,...response.data[1].results]
-    setVideogames(cardsToShow)
-    console.log(cardsToShow);
-  })
-  .catch(error =>{
-    console.log(error);
-  })
-}
-
-//UseEffect para obtener los datos cada que se actualiza el home
 useEffect(()=>{
-  requestApi()
+    if(videogamesIsEmpty && !mountedApp){
+      dispatch(getAllVideogames())
+      dispatch(getAllGenres())
+    }
 },[])
 
 
 
-
-const searchVideogameByName = async (nameVideogame)=>{
-  await axios('http://localhost:3001/videogames?name='+nameVideogame)
-    .then(response=>{
-      
-      const cardsToShow = [...response.data[0].results,...response.data[1].results]
-      console.log(cardsToShow);
-      if(cardsToShow.length===0){
-        window.alert('No se encontraron coincidencias')
-      }
-      else{
-        setVideogames(cardsToShow) 
-      }
-                
-    })
-    .catch(error =>{
-      console.log(error);
-    })
-}
-
-const handleLogin = (condition) =>{
-  console.log(condition);
-  setLogin(condition)
-}
+// const handleLogin = (condition) =>{
+//   console.log(condition);
+//   setLogin(condition)
+// }
 
 
   return (
     <div className="App">
       {/* Auxiliar de home */}
       {/* {login?<NavBar requestApi={requestApi}></NavBar>:<>Z</>} */}
-      <NavBar requestApi={requestApi}></NavBar>
+      <NavBar></NavBar>
       <Routes>
         {/* <Route path="/" element={<LandingPage handleLogin={handleLogin}></LandingPage>}/>  */}
-        {/* <Route path="/" element={videogamesIsEmpty ? (<Loading></Loading>) : (<CardsVideogame searchVideogameByName={searchVideogameByName} videogames={videogames}/>)}/>  */}
-        <Route path="/" element={<CardsVideogame searchVideogameByName={searchVideogameByName} videogames={videogames}/>}/>
-        {/* <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
-        <Route path='/Form' element={<Form requestApi={requestApi}/>}> </Route>  */}
+        <Route path="/home" element={mountedApp||!videogamesIsEmpty? (<CardsVideogame/>) : (<Loading></Loading>)}/> 
+        
+        {/* <Route path="/home" element={<CardsVideogame/>}/> */}
+        <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
+        <Route path='/Form' element={<Form/>}> </Route> 
       </Routes>
+      {mountedApp||videogamesIsEmpty? <h1>Game not founded</h1> : <h1></h1>}
     </div>
   );
 }

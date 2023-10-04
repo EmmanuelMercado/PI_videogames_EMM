@@ -28,28 +28,26 @@ routerVideogames.get('/',async(req,res)=>{
         if(name){
             //https://api.rawg.io/api/games?search=Grand&key=f6eb52bcbcf14eb3b2670e43ac00abd8
             url = 'https://api.rawg.io/api/games?search='+name+'&key='+API_KEY
+            console.log(url);
             const videogameInDB = await findByName(name);
-            let DBResult = {
-                origin:"DB",
-                results:videogameInDB
-            }
-            let ResultApi = {
-                origin:"API",
-                results:[]
-            }
+            for (let i = 0; i < videogameInDB.length; i++) {
+                videogameInDB[i].dataValues.origin = 'DB';
+                videogameInDB[i].dataValues.genres = videogameInDB[i].dataValues.Genres;
+            }  
             let finalResult=[]
-            await axios.get(url)
+
+            await axios(url)
             .then(response=>{
-                const gamesAPILimited = response.data.results.slice(0,(15-DBResult.results.length))
-                ResultApi={
-                    origin:"API",
-                    results:gamesAPILimited
-                }
-                finalResult.push(DBResult)
-                finalResult.push(ResultApi)
+                const gamesAPILimited = response.data.results.slice(0,(15-videogameInDB.length))
+                for (let i = 0; i < gamesAPILimited.length; i++) {
+                    gamesAPILimited[i].origin = 'API';
+                }   
+                finalResult = [...videogameInDB,...gamesAPILimited]
+                
                 res.status(200).json(finalResult)
             })
             .catch(error =>{
+                console.log(error);
                 res.status(500).json({ error: 'Error al hacer la solicitud a la API' });
             })
         }

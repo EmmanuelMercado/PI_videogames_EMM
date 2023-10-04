@@ -1,15 +1,11 @@
 import styles from './NavBar.module.css'
 import { Link } from 'react-router-dom';
 const NavBar = (props)=>{
-
-    const requestApi = ()=>{
-      props.requestApi()
-    }  
     return(
         <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
         <Link to="/home">
-          <img src="logo.png" alt="Logo de la empresa" onClick={requestApi} />
+          <img src="logo.png" alt="Logo de la empresa"/>
         </Link>
         </div>
         <div className={styles.navbarCenter}>
