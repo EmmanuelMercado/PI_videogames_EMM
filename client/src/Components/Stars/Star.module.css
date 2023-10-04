@@ -1,5 +1,5 @@
 .starRating {
     font-size: 24px; /* Tamaño de las estrellas */
-    color: rgb(163, 1, 1);/* Color de las estrellas rellenas */
+    color: white;;/* Color de las estrellas rellenas */
     align-items: center;
   }

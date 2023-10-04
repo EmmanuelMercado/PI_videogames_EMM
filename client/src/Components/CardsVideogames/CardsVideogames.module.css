@@ -5,4 +5,12 @@
     flex-wrap: wrap;
     /* Esto distribuye el espacio horizontal disponible de manera uniforme entre las tarjetas, lo que significa que habrá un espacio igual entre cada par de tarjetas. */
     justify-content: space-between;
+
+    background-color: #221D5E;
 }
+
+.activePage {
+    background-color: #007bff; /* Cambia el color de fondo al resaltar */
+    color: white; /* Cambia el color del texto al resaltar */
+    font-weight: bold; /* Puedes aplicar negrita u otros estilos según tu preferencia */
+  }

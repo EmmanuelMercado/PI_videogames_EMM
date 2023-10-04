@@ -1,7 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(77, 0, 0);
+    border: 1px solid rgb(14, 1, 158);
     text-align: center;
     overflow: hidden;
     border-radius: 8%;
@@ -17,12 +17,12 @@
 
 .container input{
     color: aliceblue;
-    background-color: rgb(202, 11, 11);
+    background-color:  #221D5E;;
     margin-top: 10px;
 }
 .container textarea{
     color: aliceblue;
-    background-color: rgb(202, 11, 11);
+    background-color:  #221D5E;;
 }
 
 

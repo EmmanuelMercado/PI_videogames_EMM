@@ -19,7 +19,7 @@ import LandingPage from './Components/LandingPage/LandingPage';
 
 function App() {
 // const [videogames,setVideogames] = useState({})
-// const [login,setLogin] = useState(false)
+const [login,setLogin] = useState(false)
 const videogames = useSelector((state)=>state.videogames)
 const mountedApp = useSelector((state)=>state.mountedApp)
 let videogamesIsEmpty = Object.keys(videogames).length === 0;
@@ -35,26 +35,25 @@ useEffect(()=>{
 
 
 
-// const handleLogin = (condition) =>{
-//   console.log(condition);
-//   setLogin(condition)
-// }
+const handleLogin = (condition) =>{
+  console.log(condition);
+  setLogin(condition)
+}
 
 
   return (
     <div className="App">
       {/* Auxiliar de home */}
-      {/* {login?<NavBar requestApi={requestApi}></NavBar>:<>Z</>} */}
-      <NavBar></NavBar>
+      {login?<NavBar></NavBar>:<></>}
       <Routes>
-        {/* <Route path="/" element={<LandingPage handleLogin={handleLogin}></LandingPage>}/>  */}
+        <Route path="/" element={<LandingPage handleLogin={handleLogin}></LandingPage>}/> 
         <Route path="/home" element={mountedApp||!videogamesIsEmpty? (<CardsVideogame/>) : (<Loading></Loading>)}/> 
         
         {/* <Route path="/home" element={<CardsVideogame/>}/> */}
         <Route path='/Detail/:id' element={<DetailVideogame/>}> </Route> 
         <Route path='/Form' element={<Form/>}> </Route> 
       </Routes>
-      {mountedApp||videogamesIsEmpty? <h1>Game not founded</h1> : <h1></h1>}
+      {!mountedApp||!videogamesIsEmpty? <h1></h1> : <h1>Game not founded</h1>}
     </div>
   );
 }

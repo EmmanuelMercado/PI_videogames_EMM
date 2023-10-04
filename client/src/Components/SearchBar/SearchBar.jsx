@@ -45,7 +45,7 @@ const SearchBar = () =>{
 
     return(
         <div className={styles.searchBar}>
-            <input onChange={handleChange} type="search" value={nameVideogame}/>
+            <input onChange={handleChange} placeholder="Search Videogame" type="search" value={nameVideogame}/>
             {nameVideogame && (
             <button  onClick={cancelSearchGame}>&#x2715;</button>
             )}

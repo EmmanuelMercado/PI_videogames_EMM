@@ -24,7 +24,7 @@ const CardVideogame = (props) => {
   return (
     <div className={styles.cardContainer}>
     <h4 className={styles.cardTitle}>{name}</h4>
-    <StarRating rating={rating} /> {/* Mostrar el rating con estrellas */}
+    <StarRating rating={rating} />
     <div className={styles.cardImageContainer}>
         <Link to={'/detail/' + id}>
           <img src={background_image} alt={name} className={styles.cardImage} />

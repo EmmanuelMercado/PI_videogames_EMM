@@ -63,7 +63,7 @@ const DetailVideogame = ()=>{
     }
     return(
         <div>
-            <Link to= '/'>
+            <Link to= '/home'>
             <div className={styles.home}>
                 <h1>Home</h1>
             </div>

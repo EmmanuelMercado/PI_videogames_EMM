@@ -1,28 +1,30 @@
 .navbar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr; /* Crea tres columnas de igual ancho */
-    justify-items: center; /* Centrar horizontalmente en el centro */
-    align-items: center; /* Centrar verticalmente en el centro */
-    height: 60px; /* Ajusta la altura según tus necesidades */
-    background-color: #333; /* Color de fondo de la barra de navegación */
-    color: white; /* Color del texto */
-  }
-  
-.navbar img{
-    width: 150px;
-    height: 50px;
-    border-radius: 50%;
-    text-align:left; /* Alineación izquierda */
-    
-  }
-  
-.navbar h1{
-    text-align: center; /* Alineación centrada */
-    text-decoration-color: aliceblue;
+  display: grid;
+  grid-template-columns: auto auto auto; /* Tres columnas automáticas */
+  align-items: center; /* Centrar verticalmente en el centro */
+  height: auto; /* Altura automática para adaptarse al contenido */
+  background-color: #090068; /* Color de fondo de la barra de navegación */
+  color: white; /* Color del texto */
+  padding: 0px; /* Espaciado interior para mejorar el diseño */
 }
+
+.navbar img {
+  max-width: 30%; /* El logo se ajustará automáticamente al ancho del contenedor */
+  height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+  text-align: left; /* Alineación izquierda */
   
+  border-radius: 100%;
+}
+
+.navbar h1 {
+  text-align: center; /* Alineación centrada */
+  text-decoration-color: aliceblue;
+  margin: 0; /* Elimina el margen predeterminado para h1 */
+  font-size: 40px;
+}
+
 .navbar h3 {
-    text-align: right; /* Alineación derecha */
-    color: #a73737;
-    text-decoration: none;
+  text-align: right; /* Alineación derecha */
+  color: #B66000;
+  margin: 0; /* Elimina el margen predeterminado para h3 */
 }

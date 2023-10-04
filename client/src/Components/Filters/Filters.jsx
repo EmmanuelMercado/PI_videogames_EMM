@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import {useDispatch,useSelector} from "react-redux"
 import { filterVideogames } from "../../redux/actions";
+import styles from './Filters.module.css'
 
 
 const Filters = ()=>{
@@ -37,7 +38,7 @@ const Filters = ()=>{
     ));
 
     return (
-        <div>
+        <div className={styles.container}>
         <label htmlFor="origen">Origin</label>
         <select name="origen" value={opcionesFiltro.origen} onChange={filterOrigin}>
             <option value="">All videogames</option>

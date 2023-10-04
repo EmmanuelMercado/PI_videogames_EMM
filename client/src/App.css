@@ -1,8 +1,12 @@
 .App {
   text-align: center;
-  background-color: #1b1a1a; 
+  background-color: #221D5E;
 }
-
+body {
+  background-color: #221D5E;
+  margin: 0;
+  padding: 0;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,4 +40,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Oculta la "tacha" en los campos de entrada */
+input[type="text"]::-ms-clear,
+input[type="text"]::-ms-reveal {
+  display: none;
+}
+
+/* Oculta la "tacha" en los campos de entrada de Chrome */
+input[type="text"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
 }

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import styles from './Form.module.css'
+import {useDispatch,useSelector} from "react-redux"
+
+import { getAllVideogames,getAllGenres,mountedAppPage } from '../../redux/actions';
 
 const Form = ()=>{
     //Estados locales
@@ -14,6 +17,8 @@ const Form = ()=>{
         genres:[]
     })
     let [genres,setGenres]=useState([])
+
+    const dispatch = useDispatch()
 
     //Obtener los géneros
     useEffect(()=>{
@@ -121,6 +126,9 @@ const Form = ()=>{
         }
         if(dataCorrect){
             try {
+                dispatch(getAllVideogames())
+                dispatch(getAllVideogames())
+
                 const response = await axios.post("http://localhost:3001/videogames", form, {
                   headers: {
                     "Content-Type": "application/json", // Indicamos que estamos enviando JSON

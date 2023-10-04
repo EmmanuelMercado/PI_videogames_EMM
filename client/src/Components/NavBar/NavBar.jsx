@@ -5,7 +5,7 @@ const NavBar = (props)=>{
         <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
         <Link to="/home">
-          <img src="logo.png" alt="Logo de la empresa"/>
+          <img src="logo.svg" alt="Logo de la empresa"/>
         </Link>
         </div>
         <div className={styles.navbarCenter}>
